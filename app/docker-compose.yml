@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    command: gunicorn library.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DJANGO_SETTINGS_MODULE=library.settings
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=library_db
+      - MYSQL_USER=library_user
+      - MYSQL_PASSWORD=library_pass
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: library_db
+      MYSQL_USER: library_user
+      MYSQL_PASSWORD: library_pass
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"  # <— вот здесь он слушает локальный порт
+
+volumes:
+  mysql_data:
