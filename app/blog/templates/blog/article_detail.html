@@ -1,12 +1,38 @@
 <h1>{{ article.title }}</h1>
-<p>Категорія: {{ article.category.title }}</p>
-<p>Дата: {{ article.publication_date }}</p>
-<p>Автор: {{ article.author }}</p>
-<img src="{{ article.image }}" alt="{{ article.title }}">
+
+<p>
+    <i class="{{ article.category.icon }}"></i>
+    {{ article.category.title }}
+</p>
+
+<p>Автор: {{ article.author }} | Дата: {{ article.publication_date }}</p>
+
+<img src="{{ article.image }}" alt="{{ article.title }}" style="max-width:400px;">
+
+
 <p>{{ article.text }}</p>
 
+
+{% if article.tag.all %}
 <p>Теги:
-{% for t in article.tag.all %}
-    {{ t.title }}
-{% endfor %}
+    {% for t in article.tag.all %}
+        <span>{{ t.title }}</span>
+    {% endfor %}
 </p>
+{% endif %}
+
+<hr>
+
+<h2>Коментарі</h2>
+{% if comments %}
+    <ul>
+    {% for comment in comments %}
+        <li>
+            <strong>{{ comment.author }}</strong> ({{ comment.publication_date }}):<br>
+            {{ comment.text }}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Немає коментарів.</p>
+{% endif %}
