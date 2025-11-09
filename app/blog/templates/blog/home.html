@@ -1,3 +1,7 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+
 <h2>Останні статті</h2>
 <ul>
     {% for article in latest_articles %}
