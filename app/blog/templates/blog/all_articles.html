@@ -1,6 +1,7 @@
-<h2>Останні статті</h2>
+<h1>Всі опубліковані статті</h1>
+
 <ul>
-    {% for article in latest_articles %}
+    {% for article in articles %}
         <li>
             <a href="{% url 'article_detail' article.id %}">{{ article.title }}</a>
             - {{ article.publication_date }}
@@ -9,6 +10,3 @@
         <li>Немає опублікованих статей.</li>
     {% endfor %}
 </ul>
-<p>
-    <a href="{% url 'all_articles' %}">Переглянути всі опубліковані статті</a>
-</p>
