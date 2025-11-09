@@ -17,7 +17,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 5. Копируем проект
-COPY . .
+COPY app .
 
 # 6. Переменные окружения
 ENV PYTHONDONTWRITEBYTECODE 1

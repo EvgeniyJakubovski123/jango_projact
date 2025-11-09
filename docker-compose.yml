@@ -1,13 +1,14 @@
-version: '3.9'
-
 services:
   web:
     build: .
-    command: sh -c "
-      python manage.py makemigrations &&
-      python manage.py migrate &&gunicorn library.wsgi:application --bind 0.0.0.0:8000"
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             gunicorn library.wsgi:application --bind 0.0.0.0:8000"
+
     volumes:
-      - .:/app
+      - ./app:/app
+
     ports:
       - "8000:8000"
     depends_on:
@@ -35,7 +36,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - "8080:8080"  # <— вот здесь он слушает локальный порт
+      - "8080:8080"
 
 volumes:
   mysql_data:
