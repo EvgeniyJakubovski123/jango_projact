@@ -20,3 +20,13 @@
 <p>
     <a href="{% url 'categories_list' %}">Переглянути всі категорії</a>
 </p>
+<p>
+    {% if user.is_authenticated %}
+        Привіт, {{ user.username }}!
+        <a href="{% url 'logout' %}">Вийти</a>
+    {% else %}
+        <a href="{% url 'login' %}">Увійти</a> |
+        <a href="{% url 'register' %}">Зареєструватися</a>
+    {% endif %}
+</p>
+

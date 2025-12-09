@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
-    'account.apps.AccountConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +90,8 @@ DATABASES = {
 
 
 
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -120,6 +122,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -130,6 +136,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Медиа файлы
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+# Redirect после выхода
+LOGOUT_REDIRECT_URL = '/'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

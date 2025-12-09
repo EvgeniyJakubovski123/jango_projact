@@ -7,10 +7,8 @@ from blog.models import Comment  # модель коментаря
 
 @receiver(post_migrate)
 def create_default_groups(sender, **kwargs):
-    # Група Автор
     author_group, created = Group.objects.get_or_create(name='Author')
     if created:
-        # Додаємо права для створення/редагування/видалення своїх коментарів
         permissions = [
             Permission.objects.get(codename='add_comment'),
             Permission.objects.get(codename='change_comment'),
